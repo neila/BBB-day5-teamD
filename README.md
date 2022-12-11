@@ -1,6 +1,6 @@
 # Putty V2
 
-取引板型のERC20/721用オプションマーケット.
+取引板型の ERC20/721 用オプションマーケット.
 [foundry](foundry.sh)製。
 詳しくは [spec](./spec/).
 
