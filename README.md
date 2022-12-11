@@ -15,7 +15,7 @@
 ```
 git clone git@github.com:neila/BBB-day5-teamD.git
 yarn install
-forge install
+forge install foundry-rs/forge-std  Rari-Capital/solmate OpenZeppelin/openzeppelin-contracts
 forge test --gas-report
 ```
 
