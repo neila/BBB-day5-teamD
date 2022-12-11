@@ -1,0 +1,8 @@
+crytic-compile==0.2.4
+packaging==22.0
+prettytable==3.5.0
+pycryptodome==3.16.0
+pysha3==1.0.2
+slither-analyzer==0.9.1
+solc-select==1.0.2
+wcwidth==0.2.5

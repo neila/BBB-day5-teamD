@@ -2,28 +2,45 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - "main"
   pull_request:
 
-env:
-  FOUNDRY_PROFILE: ci
-
 jobs:
-  run-ci:
+  scan:
+    name: Scan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Setup node
+        run: yarn install --immutable
+      - name: prettier & solhint
+        run: yarn scan
 
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+  static-analysis:
+    name: Static analysis (slither)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run slither
+        uses: crytic/slither-action@v0.2.0
+        continue-on-error: true
+        with:
+          fail-on: "config"
+
+  test:
+    name: Test (forge)
+    runs-on: ubuntu-latest
+    env:
+      FOUNDRY_PROFILE: ci
+    steps:
+      - uses: actions/checkout@v3
+      - uses: foundry-rs/foundry-toolchain@v1
         with:
           version: nightly
-
-      - name: Install deps
+      - name: Setup forge
         run: forge install
-
-      - name: Check gas snapshots
-        run: forge snapshot --check
-
       - name: Run tests
-        run: forge test
+        run: forge test  --gas-report
