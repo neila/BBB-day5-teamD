@@ -42,6 +42,7 @@ jobs:
 
   scan:
     name: Scan repository
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: prettier
@@ -51,6 +52,7 @@ jobs:
 
   static-analysis:
     name: Static analysis
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: static analysis
@@ -58,6 +60,7 @@ jobs:
 
   tests:
     name: Tests
+    runs-on: ubuntu-latest
     needs: build
     steps:
       - name: Run tests
