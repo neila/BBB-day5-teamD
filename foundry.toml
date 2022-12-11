@@ -4,6 +4,7 @@ fuzz_runs = 100
 optimizer_runs = 10_000
 optimizer = true
 no_match_path = "test/differential/*"
+libs = ["node_modules", "lib"]
 
 [profile.ci]
 fuzz_runs = 100

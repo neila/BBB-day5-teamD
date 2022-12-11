@@ -1,6 +1,6 @@
 # Putty V2
 
-取引板型のERC20/721用オプションマーケット.
+取引板型の ERC20/721 用オプションマーケット.
 [foundry](foundry.sh)製。
 詳しくは [spec](./spec/).
 
@@ -15,7 +15,7 @@
 ```
 git clone git@github.com:neila/BBB-day5-teamD.git
 yarn install
-forge install
+forge install foundry-rs/forge-std  Rari-Capital/solmate OpenZeppelin/openzeppelin-contracts
 forge test --gas-report
 ```
 
