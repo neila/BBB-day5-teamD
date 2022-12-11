@@ -29,7 +29,6 @@ jobs:
         continue-on-error: true
         with:
           fail-on: "config"
-          target: "src"
 
   test:
     name: Test (forge)
