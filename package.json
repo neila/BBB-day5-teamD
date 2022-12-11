@@ -1,12 +1,18 @@
 {
   "name": "putty-v2",
-  "author": "outdoteth",
+  "author": "SHØ <neila@users.noreply.github.com> (https://akxra.art/)",
+  "contributors": [
+    "SHØ <neila@users.noreply.github.com> (https://akxra.art/)",
+    "hayashi-ay <a_hayashi@codmon.co.jp> (http://hayapenguin.com/)",
+    "kazumal <kazuma.hamamoto12@gmail.com> (https://github.com/kazumal)"
+  ],
   "version": "1.0.0",
-  "description": "Exotic NFT and ERC20 covered call vaults",
-  "homepage": "https://github.com/outdoteth/putty-v2",
+  "license": "MIT",
+  "description": "Order-book based, American options market for NFTs and ERC20s",
+  "homepage": "https://github.com/neila/BBB-day5-teamD",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/outdoteth/putty-v2.git"
+    "url": "git+https://github.com:neila/BBB-day5-teamD.git"
   },
   "scripts": {
     "prettier": "prettier --write 'src/**/*.sol'",

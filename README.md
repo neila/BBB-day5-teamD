@@ -10,19 +10,20 @@
 2. Install `nodejs`, refer to [nodejs](https://nodejs.org/en/)
 3. Install `yarn`, `npm install --global yarn`
 
-次に、
+環境構築:
 
 ```
 git clone git@github.com:neila/BBB-day5-teamD.git
 yarn install
 forge install foundry-rs/forge-std  Rari-Capital/solmate OpenZeppelin/openzeppelin-contracts
-forge test --gas-report
 ```
 
 ## テスト
 
 テストキットは `./test/`.
 差動テストは `./test/differential/`. デフォルトでオフになっている。オンにする方法は `./test/differential/README.md` 参照。
+
+テスト:
 
 ```
 forge test --gas-report
@@ -32,17 +33,18 @@ forge test --gas-report
 
 静的解析には [slither](https://github.com/crytic/slither)を使用.
 
-インストール:
+環境構築:
 
 ```
-pip3 install slither-analyzer
-pip3 install solc-select
-solc-select install 0.8.13
-solc-select use 0.8.13
+python3 -m venv .pyenv
+source .pyenv/bin/activate
+python -m pip install -r requirements.txt
+solc-select install 0.8.16
+solc-select use 0.8.16
 ```
 
 実行:
 
 ```
-slither ./src/PuttyV2.sol --solc-args "--optimize --optimize-runs 100000"
+yarn slither
 ```
