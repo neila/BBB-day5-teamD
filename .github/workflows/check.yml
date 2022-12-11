@@ -11,7 +11,7 @@ jobs:
         run: yarn install
       - name: configure solidity compiler
         run: solc-select install 0.8.16
-        run: solc-select use 0.8.16
+      - run: solc-select use 0.8.16
       - name: scan
         run: yarn scan
       - name: static analysis
