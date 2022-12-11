@@ -50,11 +50,13 @@ jobs:
   static-analysis:
     name: Static analysis
     needs: build
-    - name: static analysis
-      run: yarn slither
+    steps:
+      - name: static analysis
+        run: yarn slither
 
   tests:
     name: Tests
     needs: build
-    - name: Run tests
-      run: forge test  --gas-report
+    steps:
+      - name: Run tests
+        run: forge test  --gas-report
