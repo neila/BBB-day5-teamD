@@ -21,6 +21,7 @@
     "lint:fix": "solhint --config ./.solhint.json 'src/**/*.sol' --fix",
     "scan": "yarn prettier:check && yarn lint",
     "slither": "slither ./src/PuttyV2.sol --solc-args \"--optimize --optimize-runs 100000\"",
+    "slither:report": "slither ./src/PuttyV2.sol --solc-args \"--optimize --optimize-runs 100000\" --checklist > .slithereport.md",
     "deploy:rinkeby": "forge create src/PuttyV2.sol:PuttyV2 --etherscan-api-key $ETHERSCAN_KEY --verify --rpc-url $RINKEBY_RPC_URL --interactive --constructor-args https://api.rinkeby.putty.finance/metadata/ 0 0xc778417e063141139fce010982780140aa0cd5ab",
     "deploy:mainnet": "forge create src/PuttyV2.sol:PuttyV2 --etherscan-api-key $ETHERSCAN_KEY --verify --rpc-url $MAINNET_RPC_URL --interactive --constructor-args https://api.putty.finance/metadata/ 0 0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
   },

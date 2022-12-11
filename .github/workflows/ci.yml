@@ -1,50 +1,47 @@
-name: test
+name: CI
 on:
   push:
     branches:
-      - main
+      - "main"
   pull_request:
 
-env:
-  FOUNDRY_PROFILE: ci
-
 jobs:
-  ci:
-    name: CI
+  scan:
+    name: Scan
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources
-        uses: actions/checkout@v3
-
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          version: nightly
-
-      - name: setup forge
-        run: forge install
-
-      - name: setup node
-        run: yarn install
-
-      - name: setup pyenv
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: install dependencies
-        run: python -m pip install -r requirements.txt
-
-      - name: set solidity compiler version
-        run: |
-          solc-select install 0.8.16
-          solc-select use 0.8.16
-
+          node-version: 16.x
+      - name: Setup node
+        run: yarn install --immutable
       - name: prettier & solhint
         run: yarn scan
 
-      - name: static analysis
-        run: yarn slither
+  static-analysis:
+    name: Static analysis (slither)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run slither
+        uses: crytic/slither-action@v0.2.0
+        continue-on-error: true
+        with:
+          fail-on: "config"
+          target: "src"
 
+  test:
+    name: Test (forge)
+    runs-on: ubuntu-latest
+    env:
+      FOUNDRY_PROFILE: ci
+    steps:
+      - uses: actions/checkout@v3
+      - uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+      - name: Setup forge
+        run: forge install
       - name: Run tests
         run: forge test  --gas-report
