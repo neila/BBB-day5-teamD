@@ -6,8 +6,8 @@ import "forge-std/console.sol";
 import "openzeppelin/utils/cryptography/ECDSA.sol";
 import "openzeppelin/utils/Strings.sol";
 
-import "src/PuttyV2.sol";
-import "../shared/Fixture.t.sol";
+import "src/day-5/PuttyV2.sol";
+import "../shared/5.Fixture.t.sol";
 
 contract TestEIP712 is Fixture {
     address[] internal addrArr;

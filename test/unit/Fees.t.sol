@@ -5,8 +5,8 @@ import "forge-std/Test.sol";
 import "forge-std/console.sol";
 import "openzeppelin/utils/cryptography/ECDSA.sol";
 
-import "src/PuttyV2.sol";
-import "../shared/Fixture.t.sol";
+import "src/day-5/PuttyV2.sol";
+import "../shared/5.Fixture.t.sol";
 
 contract TestFees is Fixture {
     event FilledOrder(bytes32 indexed orderHash, uint256[] floorAssetTokenIds, PuttyV2.Order order);

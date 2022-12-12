@@ -8,7 +8,7 @@ import "../mocks/MockWeth.sol";
 import "../mocks/MockERC721.sol";
 import "../mocks/MockERC20.sol";
 
-import "src/PuttyV2.sol";
+import "src/day-5/PuttyV2.sol";
 
 abstract contract Fixture is Test, ERC721TokenReceiver {
     PuttyV2 internal p;
