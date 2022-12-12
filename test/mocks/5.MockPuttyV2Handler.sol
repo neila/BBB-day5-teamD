@@ -4,8 +4,8 @@ pragma solidity 0.8.16;
 import "openzeppelin/interfaces/IERC1271.sol";
 import "openzeppelin/utils/introspection/ERC165.sol";
 
-import "../../src/PuttyV2Handler.sol";
-import "../../src/PuttyV2.sol";
+import "src/day-5/PuttyV2Handler.sol";
+import "src/day-5/PuttyV2.sol";
 
 contract MockPuttyV2Handler is PuttyV2Handler, ERC165 {
     address public fillOrderTaker;

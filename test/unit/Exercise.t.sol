@@ -5,9 +5,9 @@ import "forge-std/Test.sol";
 import "forge-std/console.sol";
 import "openzeppelin/utils/cryptography/ECDSA.sol";
 
-import "src/PuttyV2.sol";
-import "../shared/Fixture.t.sol";
-import "../mocks/MockPuttyV2Handler.sol";
+import "src/day-5/PuttyV2.sol";
+import "../shared/5.Fixture.t.sol";
+import "../mocks/5.MockPuttyV2Handler.sol";
 
 contract TestExercise is Fixture {
     event ExercisedOrder(bytes32 indexed orderHash, uint256[] floorAssetTokenIds, PuttyV2.Order order);

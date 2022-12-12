@@ -1,4 +1,4 @@
-# BBB day 5 - Team D
+# BBB - Team D
 
 ## コンテスト
 
