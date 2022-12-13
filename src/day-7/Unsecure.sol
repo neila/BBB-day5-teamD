@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 // @note バージョン特有のバグあるかも？
-pragma solidity =0.8.17;
+pragma solidity =0.8.16;
 
 contract BBB {
 
@@ -28,7 +28,7 @@ contract BBB {
 
   struct TransferInfo {
     // @note 後でbool呼んでいて、型が違うのでエラーになる?
-    uint isETH;         /// 32 bytes
+    bool isETH;         /// 32 bytes
     uint amount;        /// 32 bytes
     address token;      /// 20 bytes
     address from;       /// 20 bytes
@@ -53,14 +53,13 @@ contract BBB {
 
   /// @notice
   /// @dev     Can call only owner
-  /// @return
   function getReward(address token) public view returns (uint reward) {
     uint amount = depositAmt[msg.sender][token].amount;
     uint lastTime = depositAmt[msg.sender][token].lastTime;
     // @note safeMath
     // @note block.timestamp
     // @note logicおかしい？
-    // @audit rewardが預けた時間が短いほど高くなるロジックのため、意図せず短期間で大量のBBBトークンを放出してしまう可能性があるa
+    // @audit rewardが預けた時間が短いほど高くなるロジックのため、意図せず短期間で大量のBBBトークンを放出してしまう可能性がある
     reward = (REWARD_RATE / (block.timestamp - lastTime)) * amount;
   }
 
@@ -70,6 +69,7 @@ contract BBB {
   ) private pure returns (bool) {
     uint length = _xxx.length;
     // @note 初期化必要そう
+    // @note 大丈夫っぽい https://ethereum.stackexchange.com/questions/51076/does-a-for-loop-set-the-input-integer-to-zero
     for (uint i; i < length; ) {
       if (_token == _xxx[i]) return true;
       unchecked {
@@ -99,7 +99,7 @@ contract BBB {
         from: msg.sender,
         //@note amount check
         amount: _amount,
-        to: address(this),
+        to: address(this)
     });
 
     _tokenTransfer(info);
@@ -118,14 +118,14 @@ contract BBB {
     if (!_isXXX(_token, whitelist)) revert();
     TransferInfo memory info = TransferInfo({
         isETH: _isETH,
-        token: _token;
+        token: _token,
         from: address(this),
         amount: _amount,
-        to: _to,
+        to: _to
     });
     uint canWithdrawAmount = depositAmt[msg.sender][_token].amount;
     //@audit 預けた金額と同額を引き出せない
-    require(_info.amount < canWithdrawAmount, "ERROR");
+    require(info.amount < canWithdrawAmount, "ERROR");
     // @note memoryの値なので書き換える必要ない？
     canWithdrawAmount = 0;
     _tokenTransfer(info);
